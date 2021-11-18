@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+      integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+      crossorigin="anonymous"
+    />
+    <script
+      src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+      integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+      integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+      integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+      crossorigin="anonymous"
+    ></script>
+  </head>
+
+  <body>
+    <div class="container mt-4">
+      <div class="row">
+        <div class="col">
+          <form action="" class="form" id="formValidator">
+            <div class="form-group">
+              <label for="">Full Name</label>
+              <input
+                type="text"
+                name="fullname"
+                id="fullname"
+                class="form-control"
+              />
+              <span class="form-message"></span>
+            </div>
+            <div class="form-group">
+              <label for="">Email</label>
+              <input type="text" name="email" id="email" class="form-control" />
+              <span class="form-message"></span>
+            </div>
+            <div class="form-group">
+              <label for="">Phone</label>
+              <input type="text" name="phone" id="phone" class="form-control" />
+              <span class="form-message"></span>
+            </div>
+            <div class="form-group">
+              <label for="">Phone</label>
+              <input
+                type="text"
+                name="phone2"
+                id="phone2"
+                class="form-control"
+              />
+              <span class="form-message"></span>
+            </div>
+            <div class="form-group">
+              <label for="">Phone</label>
+              <input type="checkbox" name="gender" value="0" />
+              Nam
+              <input type="checkbox" name="gender" value="1" />
+              Nữ
+              <span class="form-message"></span>
+            </div>
+            <div class="form-group">
+              <label for="">Phone</label>
+
+              <input type="file" name="file" value="1" />
+
+              <span class="form-message"></span>
+            </div>
+            <button type="submit" class="btn btn-info">Click</button>
+          </form>
+        </div>
+      </div>
+    </div>
+    <!-- <script src="./Validator.js"></script> -->
+    <script src="./Validator.min.js"></script>
+    <script>
+      Validator({
+        form: "#formValidator",
+        errorSelector: ".form-message",
+        parentSelector: ".form-group",
+        invalidClass: "invalid",
+        rules: [
+          Validator.isRequired("#fullname"),
+          Validator.isRequired("#email"),
+          Validator.isEmail("#email"),
+          Validator.isRequired("#phone"),
+          Validator.maxLength("#phone", 10),
+          Validator.isPhone("#phone"),
+          Validator.isRequired("#phone2"),
+          Validator.isRequired(
+            'input[name="gender"]',
+            "Vui lòng chọn giới tính"
+          ),
+          Validator.isConfirmed(
+            "#phone2",
+            () => document.querySelector("#phone").value,
+            "Số điện thoại nhập lại không chính xác"
+          ),
+        ],
+        onSubmit: (data) => {
+          console.log(data);
+        },
+      });
+    </script>
+  </body>
+</html>
